@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.1 - 2026-08-10
+
+
+### Bug Fixes
+
+* require pictum 0.1.2 by [@nhedger](https://github.com/nhedger) ([e1ad0e8](https://github.com/usepictum/pictum-react/commit/e1ad0e877a5ce9724d37346c43b77f4ae8503ba7))
+
+
+
+### Contributors
+* [@nhedger](https://github.com/nhedger)
+
+**Comparison**: https://github.com/usepictum/pictum-react/compare/v0.1.0...v0.1.1
+
 ## v0.1.0 - 2026-08-10
 
 
