@@ -1,4 +1,4 @@
-# <sub><img src="https://pictum.dev/api/v1/icons/devicon/react.svg" width="28" /></sub> Pictum React
+# <sub><img src="https://pictum.dev/api/v1/icons/devicon/react.svg" width="28" /></sub> Pictum for React
 
 [![npm version](https://npmx.dev/api/registry/badge/version/@pictum/react?color=bfdbfe&labelColor=404040)](https://npmx.dev/package/@pictum/react)
 [![monthly downloads](https://npmx.dev/api/registry/badge/downloads/@pictum/react?color=fed7aa&labelColor=404040)](https://npmx.dev/package/@pictum/react)
