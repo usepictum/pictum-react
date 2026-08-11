@@ -1,5 +1,4 @@
 import { Avatar, Icon, Placeholder, QrCode } from "@pictum/react";
-import { Suspense } from "react";
 
 export function App() {
 	return (
@@ -12,7 +11,7 @@ export function App() {
 			<section aria-labelledby="avatars-heading">
 				<div className="section-heading">
 					<h2 id="avatars-heading">Avatars</h2>
-					<span>5 variants</span>
+					<span>6 examples</span>
 				</div>
 				<div className="samples avatars">
 					<figure>
@@ -47,28 +46,43 @@ export function App() {
 						<div className="preview">
 							<Avatar
 								seed="margaret-hamilton"
-								variant="initials"
+								variant="monogram"
 								format="png"
-								alt="Initials avatar"
+								alt="Monogram avatar"
 							/>
 						</div>
 						<figcaption>
-							<strong>Initials</strong>
+							<strong>Monogram</strong>
 							<code>png</code>
 						</figcaption>
 					</figure>
 					<figure>
 						<div className="preview">
 							<Avatar
-								seed="customer-female"
-								variant="realistic"
-								gender="female"
+								seed="customer-any"
+								variant="portrait"
+								gender="any"
 								format="webp"
-								alt="Realistic female avatar"
+								alt="Portrait any avatar"
 							/>
 						</div>
 						<figcaption>
-							<strong>Realistic</strong>
+							<strong>Portrait</strong>
+							<code>any · webp</code>
+						</figcaption>
+					</figure>
+					<figure>
+						<div className="preview">
+							<Avatar
+								seed="customer-female"
+								variant="portrait"
+								gender="female"
+								format="webp"
+								alt="Portrait female avatar"
+							/>
+						</div>
+						<figcaption>
+							<strong>Portrait</strong>
 							<code>female · webp</code>
 						</figcaption>
 					</figure>
@@ -76,14 +90,14 @@ export function App() {
 						<div className="preview">
 							<Avatar
 								seed="customer-male"
-								variant="realistic"
+								variant="portrait"
 								gender="male"
 								format="jpg"
-								alt="Realistic male avatar"
+								alt="Portrait male avatar"
 							/>
 						</div>
 						<figcaption>
-							<strong>Realistic</strong>
+							<strong>Portrait</strong>
 							<code>male · jpg</code>
 						</figcaption>
 					</figure>
@@ -98,9 +112,7 @@ export function App() {
 				<div className="samples icons">
 					<figure>
 						<div className="preview">
-							<Suspense fallback={null}>
-								<Icon name="lucide:image" aria-label="Image" />
-							</Suspense>
+							<Icon name="lucide:image" aria-label="Image" />
 						</div>
 						<figcaption>
 							<strong>Image</strong>
@@ -109,9 +121,7 @@ export function App() {
 					</figure>
 					<figure>
 						<div className="preview">
-							<Suspense fallback={null}>
-								<Icon name="lucide:scan-qr-code" aria-label="Scan QR code" />
-							</Suspense>
+							<Icon name="lucide:scan-qr-code" aria-label="Scan QR code" />
 						</div>
 						<figcaption>
 							<strong>QR code</strong>
@@ -120,9 +130,7 @@ export function App() {
 					</figure>
 					<figure>
 						<div className="preview">
-							<Suspense fallback={null}>
-								<Icon name="lucide:user-round" aria-label="User" />
-							</Suspense>
+							<Icon name="lucide:user-round" aria-label="User" />
 						</div>
 						<figcaption>
 							<strong>User</strong>
@@ -131,9 +139,7 @@ export function App() {
 					</figure>
 					<figure>
 						<div className="preview">
-							<Suspense fallback={null}>
-								<Icon name="lucide:sparkles" aria-label="Sparkles" />
-							</Suspense>
+							<Icon name="lucide:sparkles" aria-label="Sparkles" />
 						</div>
 						<figcaption>
 							<strong>Sparkles</strong>

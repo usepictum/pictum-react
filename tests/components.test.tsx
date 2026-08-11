@@ -14,7 +14,7 @@ afterEach(() => {
 });
 
 describe("components", () => {
-	test("renders an inline icon and caches its canonical SVG", async () => {
+	test("renders an inline icon without caller suspense and caches its canonical SVG", async () => {
 		const fetchMock = vi
 			.fn()
 			.mockResolvedValue(
@@ -69,11 +69,11 @@ describe("components", () => {
 
 		expect(screen.getByAltText("Ada")).toHaveAttribute(
 			"src",
-			"https://staging.example.com/v1/avatars/initials/ada-lovelace.svg",
+			"https://staging.example.com/v1/avatar.svg?seed=ada-lovelace",
 		);
 		expect(screen.getByAltText("Hello")).toHaveAttribute(
 			"src",
-			"https://preview.example.com/v1/qr-codes.svg?data=aGVsbG8%3D",
+			"https://preview.example.com/v1/qrcode.svg?data=aGVsbG8%3D",
 		);
 	});
 
@@ -100,40 +100,70 @@ describe("components", () => {
 		);
 
 		expect(screen.getByTestId("inherited")).toHaveTextContent(
-			"https://staging.example.com/v1/avatars/initials/ada-lovelace.svg",
+			"https://staging.example.com/v1/avatar.svg?seed=ada-lovelace",
 		);
 		expect(screen.getByTestId("overridden")).toHaveTextContent(
-			"https://preview.example.com/v1/avatars/initials/grace-hopper.webp",
+			"https://preview.example.com/v1/avatar.webp?seed=grace-hopper",
 		);
 	});
 
-	test("renders gendered realistic avatars", async () => {
+	test("renders an unfiltered portrait for the any gender", async () => {
 		const screen = await render(
 			<Avatar
 				seed="customer-123"
-				variant="realistic"
-				gender="female"
+				variant="portrait"
+				gender="any"
 				alt="Customer"
 			/>,
 		);
 
 		expect(screen.getByAltText("Customer")).toHaveAttribute(
 			"src",
-			"https://pictum.dev/api/v1/avatars/realistic/female/customer-123.webp",
+			"https://pictum.dev/v1/avatar.webp?seed=customer-123&variant=portrait",
 		);
 	});
 
-	test("forwards QR code quiet-zone options without leaking DOM attributes", async () => {
+	test("requests a portrait source size without forwarding it to the image", async () => {
 		const screen = await render(
-			<QrCode value="hello" quietZone={false} alt="Hello without quiet zone" />,
+			<Avatar
+				seed="customer-456"
+				variant="portrait"
+				size={256}
+				width={96}
+				height={128}
+				alt="Sized customer"
+			/>,
 		);
 
-		const image = screen.getByAltText("Hello without quiet zone");
+		const image = screen.getByAltText("Sized customer");
 		expect(image).toHaveAttribute(
 			"src",
-			"https://pictum.dev/api/v1/qr-codes.svg?data=aGVsbG8%3D&quiet_zone=0",
+			"https://pictum.dev/v1/avatar.webp?seed=customer-456&variant=portrait&size=256",
+		);
+		expect(image).toHaveAttribute("width", "96");
+		expect(image).toHaveAttribute("height", "128");
+		expect(image).not.toHaveAttribute("size");
+	});
+
+	test("forwards QR code options without leaking DOM attributes", async () => {
+		const screen = await render(
+			<QrCode
+				value="hello"
+				quietZone={false}
+				foreground="#11223344"
+				background="#aabbccdd"
+				alt="Custom QR code"
+			/>,
+		);
+
+		const image = screen.getByAltText("Custom QR code");
+		expect(image).toHaveAttribute(
+			"src",
+			"https://pictum.dev/v1/qrcode.svg?data=aGVsbG8%3D&quiet_zone=0&foreground=%2311223344&background=%23aabbccdd",
 		);
 		expect(image).not.toHaveAttribute("quietzone");
+		expect(image).not.toHaveAttribute("foreground");
+		expect(image).not.toHaveAttribute("background");
 	});
 
 	test("sets placeholder logical image dimensions", async () => {
@@ -153,7 +183,7 @@ describe("components", () => {
 		expect(image).toHaveAttribute("height", "360");
 		expect(image).toHaveAttribute(
 			"src",
-			"https://pictum.dev/api/v1/placeholders/640x360@3x.webp?text=Coming+soon",
+			"https://pictum.dev/v1/placeholder.webp?width=640&height=360&density=3&text=Coming+soon",
 		);
 	});
 });

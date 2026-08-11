@@ -1,5 +1,5 @@
 import type { PictumAsset } from "pictum";
-import { use } from "react";
+import { Suspense, use } from "react";
 import { useIcon } from "./helper";
 import type { IconProps } from "./types";
 
@@ -10,7 +10,15 @@ interface ParsedIcon {
 
 const iconCache = new Map<string, Promise<ParsedIcon>>();
 
-export function Icon({ name, options, ...svgProps }: IconProps) {
+export function Icon(props: IconProps) {
+	return (
+		<Suspense fallback={null}>
+			<ResolvedIcon {...props} />
+		</Suspense>
+	);
+}
+
+function ResolvedIcon({ name, options, ...svgProps }: IconProps) {
 	const asset = useIcon(name, options);
 	const markup = use(loadIcon(asset));
 

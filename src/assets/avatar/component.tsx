@@ -7,6 +7,7 @@ export function Avatar({
 	variant,
 	gender,
 	format,
+	size,
 	options,
 	alt,
 	...imageProps
@@ -16,6 +17,7 @@ export function Avatar({
 		...(variant === undefined ? {} : { variant }),
 		...(gender === undefined ? {} : { gender }),
 		...(format === undefined ? {} : { format }),
+		...(size === undefined ? {} : { size }),
 	} as AvatarOptions;
 	const asset = useAvatar(seed, helperOptions);
 

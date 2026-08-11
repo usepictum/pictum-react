@@ -1,4 +1,4 @@
-# <img src="https://pictum.dev/api/v1/icons/skill-icons/react-dark.svg" width="24" /> Pictum for React
+# <img src="https://pictum.dev/v1/icons/skill-icons:react-dark.svg" width="24" /> Pictum for React
 
 [![npm version](https://npmx.dev/api/registry/badge/version/@pictum/react?color=bfdbfe&labelColor=404040)](https://npmx.dev/package/@pictum/react)
 [![monthly downloads](https://npmx.dev/api/registry/badge/downloads/@pictum/react?color=fed7aa&labelColor=404040)](https://npmx.dev/package/@pictum/react)

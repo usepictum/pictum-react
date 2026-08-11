@@ -6,6 +6,8 @@ export function QrCode({
 	value,
 	format,
 	quietZone,
+	foreground,
+	background,
 	options,
 	alt,
 	...imageProps
@@ -14,6 +16,8 @@ export function QrCode({
 		...(options ?? {}),
 		...(format === undefined ? {} : { format }),
 		...(quietZone === undefined ? {} : { quietZone }),
+		...(foreground === undefined ? {} : { foreground }),
+		...(background === undefined ? {} : { background }),
 	};
 	const asset = useQrCode(value, helperOptions);
 
